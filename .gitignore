@@ -1,0 +1,4 @@
+/Dicing Machine Demo/.vs
+*.suo
+/Dicing Machine Demo/Dicing Machine Demo/x64
+*.pdb
