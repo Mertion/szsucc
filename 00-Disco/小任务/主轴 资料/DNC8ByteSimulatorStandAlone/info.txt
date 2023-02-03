@@ -1,0 +1,5 @@
+
+
+Damit der DNC8ByteSimulator auf rechnern ohne VisualBasicPowerPacks lauffähig ist, 
+muss die DLL Microsoft.VisualBasic.PowerPacks.Vs.sll in das exe Verzeichnis 
+kopiert werden.
