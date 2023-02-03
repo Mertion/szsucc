@@ -1,0 +1,80 @@
+;/*++
+;
+;Copyright (c) Googol Tech Ltd.  All rights reserved.
+;
+;Module Name:
+;
+;    GT800.INF
+;
+;Abstract:
+;    INF file for GTS motion controller.
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=GoogolTech
+ClassGuid={580D2CA2-4246-11D5-8997-9374874D9770}
+Provider=%GOOGOLTECH%
+DriverVer = 11/06/2017,10.26.36.259
+CatalogFile=GT800.cat
+
+[ClassInstall32]
+AddReg=GT800AddReg
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%GOOGOLTECH%=DevicelistMfg1,NTamd64
+
+[DestinationDirs]
+DriverCopyFiles = 10,System32\Drivers
+DefaultDestDir = 10,System32\Drivers
+
+[SourceDisksFiles]
+GT800.sys=1
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,
+; ================= Class section =====================
+
+; ================= Device Install section =====================
+
+[DevicelistMfg1.NTamd64]
+%GOOGOLTECH%=GT800Install64,PCI\VEN_11D4&DEV_1535
+%GOOGOLTECH%=GT800Install64,PCI\VEN_11D4&DEV_1536
+
+[GT800Install64]
+CopyFiles=DriverCopyFiles
+
+[GT800Install64.Services]
+AddService=GT800,2,DriverService,EventLogging
+
+[DriverInstall64.hw]
+AddReg=GT800AddReg
+
+[DriverCopyFiles]
+GT800.sys,,,2
+
+[DriverService]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\GT800.sys                           
+
+[EventLogging]
+AddReg=EventLogAddReg
+
+[EventLogAddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\system32\drivers\GT800.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[GT800AddReg]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,GT800.sys
+
+[Strings]
+ClassName = "Motion Controller Pcie Drivers"
+DISK_NAME = "GoogolTech Pcie"
+GOOGOLTECH="GoogolTech PCIe Ver 1.0"
