@@ -4,6 +4,17 @@
 
 #pragma once
 #include ".\Fundation\SerialPort.h"
+#include "bdaqctrl.h"
+using namespace Automation::BDaq;
+
+// CConfigDlg 
+typedef struct tagConfigParam {
+	int			deviceNumber;
+	int			channelCount;
+	int			channelStart;
+	int			vrgType;
+	WCHAR 		profilePath[256];
+}DevConfParam;
 
 // CDicingMachineDemoDlg 对话框
 class CDicingMachineDemoDlg : public CDialogEx
@@ -74,10 +85,12 @@ private:
 	//DNC指令
 	byte byteDNC[16];
 	CEdit mEditSpeed;
+
+	CButton mButtonInit;
 	CButton mButtonEnable;
 	CButton mButtonStart;
 	CButton mButtonStop;
-	CButton mButtonInit;
+	CButton mButtonDisable;
 	CButton mButtonChangeSpeed;
 	CButton mButtonClrLog;
 	CListBox mListLog;
@@ -87,7 +100,6 @@ private:
 	CComboBox mComboStopBit;
 	CComboBox mComboParity;
 	CButton mButtonOpenSerialPort;
-
 	CEdit mEditSend;
 
 
@@ -97,8 +109,27 @@ public:
 	afx_msg void OnBnClickedButtonEnable();
 	afx_msg void OnBnClickedButtonStart();
 	afx_msg void OnBnClickedButtonStop();
-	CButton mButtonDisable;
+	
 	afx_msg void OnBnClickedButtonChangespeed();
 	afx_msg void OnBnClickedButtonDisable();
 	afx_msg void OnBnClickedButtonInit();
+
+	afx_msg void OnBnClickedButtonOpen();
+	//获取1816卡参数
+	int GetCardInfo1816();
+	CComboBox m_comboBox_Device;
+	CComboBox m_comboBox_ChannelStart;
+	CComboBox m_comboBox_ChannelCount;
+	CComboBox m_comboBox_ValueRange;
+	afx_msg void OnCbnSelchangeComboDevice();
+	void ConfigurateDevice();
+	void CheckError(ErrorCode error);
+
+	InstantAiCtrl* m_instantAiCtrl;
+	DevConfParam        m_confParam;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CEdit mEditChannel1;
+	CEdit mEditChannel2;
+	afx_msg void OnBnClickedButtonRun();
+	afx_msg void OnClose();
 };

@@ -24,11 +24,18 @@
 #define IDC_COMBO_STOPBIT               1014
 #define IDC_COMBO_PARITY                1015
 #define IDC_BUTTON_SERIALPORTSEND       1016
-#define IDC_EDIT3                       1017
 #define IDC_EDIT_SEND                   1017
 #define IDC_CHECK_CHKHEX                1018
-#define IDC_BUTTON_DISBALE              1019
 #define IDC_BUTTON_DISABLE              1019
+#define IDC_COMBO_DEVICE                1020
+#define IDC_COMBO_CHANSTART             1021
+#define IDC_COMBO_CHANCOUNT             1022
+#define IDC_COMBO_VALUERANGE            1023
+#define IDC_BUTTON_OPEN                 1024
+#define IDC_BUTTON_RUN                  1025
+#define IDC_EDIT_CHANNEL1               1026
+#define IDC_EDIT3                       1027
+#define IDC_EDIT_CHANNEL2               1027
 
 // Next default values for new objects
 // 
@@ -36,7 +43,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        130
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1020
+#define _APS_NEXT_CONTROL_VALUE         1028
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
