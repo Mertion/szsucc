@@ -132,4 +132,5 @@ public:
 	CEdit mEditChannel2;
 	afx_msg void OnBnClickedButtonRun();
 	afx_msg void OnClose();
+	afx_msg void OnBnClickedButtonOpenGTS();
 };

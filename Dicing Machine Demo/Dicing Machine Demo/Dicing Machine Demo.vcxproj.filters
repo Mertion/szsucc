@@ -39,6 +39,9 @@
     <ClInclude Include="Fundation\SerialPort.h">
       <Filter>Fundation</Filter>
     </ClInclude>
+    <ClInclude Include="Googol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dicing Machine Demo.cpp">
@@ -52,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="Fundation\SerialPort.cpp">
       <Filter>Fundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Googol.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

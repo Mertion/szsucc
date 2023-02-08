@@ -45,15 +45,19 @@ int BinToHexStr(unsigned char* HexStr, unsigned char* Bin, int  BinLen)
 {
 #pragma warning(disable:4996)
 	char Temp1[3];
-	char* result;
+	
 	int ret;
 	int lens;
 	int i = 0;
 	lens = BinLen;
-	if (lens <= 0) return 0;
-	result = (char*)malloc((lens * 2 + 2) * sizeof(char));
-	if (!result) return 0;
-	memset(result, 0, sizeof(result));
+	if (lens <= 0)
+	{
+		return 0;
+	}
+	int nSize = (lens * 2 + 2) * (int)sizeof(char);
+	char* result = new char[nSize];
+	memset(result, 0, nSize);
+
 	for (i = 0; i < lens; i++)
 	{
 		memset(Temp1, 0, sizeof(Temp1));
@@ -67,7 +71,7 @@ int BinToHexStr(unsigned char* HexStr, unsigned char* Bin, int  BinLen)
 	}
 	strcpy((char*)HexStr, result);
 
-	free(result);
+	delete [] result;
 	return 2 * i;
 #pragma warning(default: 4996)
 }
@@ -190,6 +194,7 @@ BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON_RUN, &CDicingMachineDemoDlg::OnBnClickedButtonRun)
 	ON_WM_CLOSE()
+	ON_BN_CLICKED(IDC_BUTTON_OPENGTS, &CDicingMachineDemoDlg::OnBnClickedButtonOpenGTS)
 END_MESSAGE_MAP()
 
 
@@ -828,8 +833,9 @@ void CDicingMachineDemoDlg::OnCbnSelchangeComboDevice()
 	GetDlgItem(IDOK)->EnableWindow(TRUE);
 	if (errorCode != 0) {
 		CString str;
-		str.Format(_T("Error: the error code is 0x%x, The %s is busy or not exit in computer now.\n\
- Select other device please!"), errorCode, des);
+		str.Format(_T("Error: the error code is 0x%x, The "), errorCode);
+
+		str = str + des + _T(" is busy or not exit in computer now. Select other device please!");
 		AfxMessageBox(str);
 		GetDlgItem(IDOK)->EnableWindow(FALSE);
 		return;
@@ -886,10 +892,10 @@ void CDicingMachineDemoDlg::ConfigurateDevice()
 	CheckError(errorCode);
 
 	m_instantAiCtrl->getSelectedDevice(devInfo);
-	TCHAR des[MAX_DEVICE_DESC_LEN];
+	/*TCHAR des[MAX_DEVICE_DESC_LEN];
 	CString str;
 	str.Format(_T("Instant AI - Run( %s )"), WCHAR_TO_TCHAR((LPCWSTR)devInfo.Description, des));
-	SetWindowText(str);
+	SetWindowText(str);*/
 
 	//get channel max number. set value range for every channel.
 	int count = m_instantAiCtrl->getFeatures()->getChannelCountMax();
@@ -969,4 +975,12 @@ void CDicingMachineDemoDlg::OnClose()
 	m_instantAiCtrl->Dispose();
 
 	CDialogEx::OnClose();
+}
+
+
+void CDicingMachineDemoDlg::OnBnClickedButtonOpenGTS()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+
 }
