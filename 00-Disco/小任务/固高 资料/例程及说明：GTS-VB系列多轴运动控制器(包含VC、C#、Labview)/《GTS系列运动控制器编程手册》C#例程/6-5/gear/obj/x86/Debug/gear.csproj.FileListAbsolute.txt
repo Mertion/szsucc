@@ -1,0 +1,47 @@
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\bin\Debug\gear.exe
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\bin\Debug\gear.pdb
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\gear.Form1.resources
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\gear.Properties.Resources.resources
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\gear.exe
+C:\Documents and Settings\zhong.y\桌面\测试资料\gear\gear\obj\x86\Debug\gear.pdb
+H:\gear\gear\obj\x86\Debug\gear.exe
+H:\gear\gear\obj\x86\Debug\gear.pdb
+H:\gear\gear\bin\Debug\gear.exe
+H:\gear\gear\bin\Debug\gear.pdb
+H:\gear\gear\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\gear\gear\obj\x86\Debug\gear.Form1.resources
+H:\gear\gear\obj\x86\Debug\gear.Properties.Resources.resources
+H:\gear\gear\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\gear\gear\obj\x86\Debug\GenerateResource.write.1.tlog
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\gear.exe
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\gear.pdb
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\bin\Debug\gear.exe
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\bin\Debug\gear.pdb
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\ResolveAssemblyReference.cache
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\gear.Form1.resources
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\gear.Properties.Resources.resources
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\GenerateResource.read.1.tlog
+\\192.168.201.13\交换目录\To li.wq\编程例程库\C#\GTS—C#\gear\gear\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\googol\Desktop\gear\gear\obj\x86\Debug\gear.exe
+C:\Users\googol\Desktop\gear\gear\obj\x86\Debug\gear.pdb
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\gear.exe
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\gear.pdb
+D:\duweisheng\GTS例程C#版本\6-5\gear\bin\Debug\gear.exe
+D:\duweisheng\GTS例程C#版本\6-5\gear\bin\Debug\gear.pdb
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\gear.Form1.resources
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\gear.Properties.Resources.resources
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\duweisheng\GTS例程C#版本\6-5\gear\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\gear.exe
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\gear.pdb
+D:\duweisheng\修改Demo\6-5\gear\bin\Debug\gear.exe
+D:\duweisheng\修改Demo\6-5\gear\bin\Debug\gear.pdb
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\gear.Form1.resources
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\gear.Properties.Resources.resources
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\duweisheng\修改Demo\6-5\gear\obj\x86\Debug\GenerateResource.write.1.tlog

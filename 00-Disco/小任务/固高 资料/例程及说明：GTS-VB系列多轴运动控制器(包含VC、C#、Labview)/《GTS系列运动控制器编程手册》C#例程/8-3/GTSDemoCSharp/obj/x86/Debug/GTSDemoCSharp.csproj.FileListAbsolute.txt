@@ -1,0 +1,7 @@
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.pdb
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.Form1.resources
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.Properties.Resources.resources
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\8-3\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.pdb

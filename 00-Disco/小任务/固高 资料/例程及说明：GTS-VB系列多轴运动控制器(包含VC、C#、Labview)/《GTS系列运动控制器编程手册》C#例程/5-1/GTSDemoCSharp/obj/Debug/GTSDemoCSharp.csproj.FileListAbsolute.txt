@@ -1,0 +1,7 @@
+D:\Project\VS2008\5-1\GTSDemoCSharp\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\VS2008\5-1\GTSDemoCSharp\bin\Debug\GTSDemoCSharp.exe
+D:\Project\VS2008\5-1\GTSDemoCSharp\bin\Debug\GTSDemoCSharp.pdb
+D:\Project\VS2008\5-1\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.exe
+D:\Project\VS2008\5-1\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.pdb
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.pdb

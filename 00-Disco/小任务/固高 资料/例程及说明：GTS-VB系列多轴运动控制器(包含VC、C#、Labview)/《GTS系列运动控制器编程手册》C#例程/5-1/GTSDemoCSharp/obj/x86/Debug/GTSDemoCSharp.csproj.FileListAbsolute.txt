@@ -1,0 +1,7 @@
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.pdb
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\5-1\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.pdb
+E:\GTS\GTS例程\《GTS系列运动控制器编程手册》C#例程\《GTS系列运动控制器编程手册》C#例程\5-1\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.exe
+E:\GTS\GTS例程\《GTS系列运动控制器编程手册》C#例程\《GTS系列运动控制器编程手册》C#例程\5-1\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.pdb

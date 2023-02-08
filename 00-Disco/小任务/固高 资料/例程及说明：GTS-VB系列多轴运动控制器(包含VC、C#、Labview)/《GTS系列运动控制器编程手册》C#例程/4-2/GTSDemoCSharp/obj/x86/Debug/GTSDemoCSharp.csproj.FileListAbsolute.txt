@@ -1,0 +1,5 @@
+D:\duweisheng\GTS例程C#版本\4-2\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\4-2\GTSDemoCSharp\bin\x86\Debug\GTSDemoCSharp.pdb
+D:\duweisheng\GTS例程C#版本\4-2\GTSDemoCSharp\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\GTS例程C#版本\4-2\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\4-2\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.pdb

@@ -1,0 +1,2 @@
+D:\duweisheng\GTS例程C#版本\10-2\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.exe
+D:\duweisheng\GTS例程C#版本\10-2\GTSDemoCSharp\obj\Debug\GTSDemoCSharp.pdb

@@ -1,0 +1,9 @@
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\bin\x86\Debug\coordinate.exe
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\bin\x86\Debug\coordinate.pdb
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.Form1.resources
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\obj\x86\Debug\GTSDemoCSharp.Properties.Resources.resources
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\obj\x86\Debug\coordinate.exe
+D:\duweisheng\GTS例程C#版本\6-9~16\GTSDemoCSharp\obj\x86\Debug\coordinate.pdb
+D:\例程\《GTS系列运动控制器编程手册》C#例程\6-9~16\GTSDemoCSharp\obj\x86\Debug\coordinate.exe
+D:\例程\《GTS系列运动控制器编程手册》C#例程\6-9~16\GTSDemoCSharp\obj\x86\Debug\coordinate.pdb
