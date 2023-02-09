@@ -5,6 +5,9 @@
 #pragma once
 #include ".\Fundation\SerialPort.h"
 #include "bdaqctrl.h"
+#include "Googol.h"
+#include "ListCtrlEx.h"
+
 using namespace Automation::BDaq;
 
 // CConfigDlg 
@@ -102,6 +105,22 @@ private:
 	CButton mButtonOpenSerialPort;
 	CEdit mEditSend;
 
+	CComboBox m_comboBox_Device;
+	CComboBox m_comboBox_ChannelStart;
+	CComboBox m_comboBox_ChannelCount;
+	CComboBox m_comboBox_ValueRange;
+	InstantAiCtrl* m_instantAiCtrl;
+	DevConfParam        m_confParam;
+	CEdit mEditChannel1;
+	CEdit mEditChannel2;
+
+	Googol mGoogol;
+	
+	const static int m_const_nIOCount = 16;
+	CListCtrlEx mListGTSDI;
+	CListCtrlEx mListGTSDO;
+	int m_ListIODataDI[m_const_nIOCount] = { 0 };
+	int m_ListIODataDO[m_const_nIOCount] = { 0 };
 
 public:
 	
@@ -109,28 +128,25 @@ public:
 	afx_msg void OnBnClickedButtonEnable();
 	afx_msg void OnBnClickedButtonStart();
 	afx_msg void OnBnClickedButtonStop();
-	
 	afx_msg void OnBnClickedButtonChangespeed();
 	afx_msg void OnBnClickedButtonDisable();
 	afx_msg void OnBnClickedButtonInit();
 
-	afx_msg void OnBnClickedButtonOpen();
 	//获取1816卡参数
 	int GetCardInfo1816();
-	CComboBox m_comboBox_Device;
-	CComboBox m_comboBox_ChannelStart;
-	CComboBox m_comboBox_ChannelCount;
-	CComboBox m_comboBox_ValueRange;
 	afx_msg void OnCbnSelchangeComboDevice();
 	void ConfigurateDevice();
 	void CheckError(ErrorCode error);
-
-	InstantAiCtrl* m_instantAiCtrl;
-	DevConfParam        m_confParam;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	CEdit mEditChannel1;
-	CEdit mEditChannel2;
 	afx_msg void OnBnClickedButtonRun();
 	afx_msg void OnClose();
 	afx_msg void OnBnClickedButtonOpenGTS();
+	afx_msg void OnBnClickedButtonOpen1816();
+
+	//初始化GTS I/O 列表控件
+	int InitGTSIOList();
+	afx_msg LRESULT onBnCLick(WPARAM wParam, LPARAM lParam);
+
+
+	int RefreshIO();
 };

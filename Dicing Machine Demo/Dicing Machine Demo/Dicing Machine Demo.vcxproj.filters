@@ -16,6 +16,9 @@
     <Filter Include="Fundation">
       <UniqueIdentifier>{05eb404e-25c3-4383-8f11-52d504fa9e62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="List">
+      <UniqueIdentifier>{63dd7359-6d1f-44c4-a14e-96c66cf45159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +45,12 @@
     <ClInclude Include="Googol.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ButtonEx.h">
+      <Filter>List</Filter>
+    </ClInclude>
+    <ClInclude Include="ListCtrlEx.h">
+      <Filter>List</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dicing Machine Demo.cpp">
@@ -58,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="Googol.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonEx.cpp">
+      <Filter>List</Filter>
+    </ClCompile>
+    <ClCompile Include="ListCtrlEx.cpp">
+      <Filter>List</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

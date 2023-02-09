@@ -31,19 +31,21 @@
 #define IDC_COMBO_CHANSTART             1021
 #define IDC_COMBO_CHANCOUNT             1022
 #define IDC_COMBO_VALUERANGE            1023
-#define IDC_BUTTON_OPEN                 1024
+#define IDC_BUTTON_OPEN1816             1024
 #define IDC_BUTTON_RUN                  1025
 #define IDC_EDIT_CHANNEL1               1026
 #define IDC_EDIT_CHANNEL2               1027
 #define IDC_BUTTON_OPENGTS              1028
+#define IDC_LIST_GTSDI                  1029
+#define IDC_LIST_GTSDO                  1031
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

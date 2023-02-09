@@ -172,6 +172,8 @@ void CDicingMachineDemoDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_VALUERANGE, m_comboBox_ValueRange);
 	DDX_Control(pDX, IDC_EDIT_CHANNEL1, mEditChannel1);
 	DDX_Control(pDX, IDC_EDIT_CHANNEL2, mEditChannel2);
+	DDX_Control(pDX, IDC_LIST_GTSDI, mListGTSDI);
+	DDX_Control(pDX, IDC_LIST_GTSDO, mListGTSDO);
 }
 
 BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
@@ -189,12 +191,13 @@ BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_CHANGESPEED, &CDicingMachineDemoDlg::OnBnClickedButtonChangespeed)
 	ON_BN_CLICKED(IDC_BUTTON_DISABLE, &CDicingMachineDemoDlg::OnBnClickedButtonDisable)
 	ON_BN_CLICKED(IDC_BUTTON_INIT, &CDicingMachineDemoDlg::OnBnClickedButtonInit)
-	ON_BN_CLICKED(IDC_BUTTON_OPEN, &CDicingMachineDemoDlg::OnBnClickedButtonOpen)
 	ON_CBN_SELCHANGE(IDC_COMBO_DEVICE, &CDicingMachineDemoDlg::OnCbnSelchangeComboDevice)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON_RUN, &CDicingMachineDemoDlg::OnBnClickedButtonRun)
 	ON_WM_CLOSE()
 	ON_BN_CLICKED(IDC_BUTTON_OPENGTS, &CDicingMachineDemoDlg::OnBnClickedButtonOpenGTS)
+	ON_BN_CLICKED(IDC_BUTTON_OPEN1816, &CDicingMachineDemoDlg::OnBnClickedButtonOpen1816)
+	ON_MESSAGE(WM_BN_CLICK, &CDicingMachineDemoDlg::onBnCLick)
 END_MESSAGE_MAP()
 
 
@@ -238,6 +241,7 @@ BOOL CDicingMachineDemoDlg::OnInitDialog()
 	m_instantAiCtrl = InstantAiCtrl::Create();
 	GetCardInfo1816();
 
+	InitGTSIOList();
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -765,22 +769,6 @@ void CDicingMachineDemoDlg::OnBnClickedButtonInit()
 	SendDNCCMD(byteDNC, 16);
 }
 
-
-void CDicingMachineDemoDlg::OnBnClickedButtonOpen()
-{
-	// TODO: 在此添加控件通知处理程序代码
-
-	m_confParam.deviceNumber = (int)m_comboBox_Device.GetItemData(m_comboBox_Device.GetCurSel());
-	m_confParam.channelCount = m_comboBox_ChannelCount.GetCurSel() + 1;
-	m_confParam.channelStart = m_comboBox_ChannelStart.GetCurSel();
-	m_confParam.vrgType = (int)m_comboBox_ValueRange.GetItemData(m_comboBox_ValueRange.GetCurSel());
-	//TCHAR_TO_WCHAR(m_profilePath, param.profilePath);
-
-	ConfigurateDevice();
-
-
-}
-
 //获取1816卡参数
 int CDicingMachineDemoDlg::GetCardInfo1816()
 {
@@ -940,20 +928,38 @@ void CDicingMachineDemoDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 
-	ErrorCode	errorCode = Success;
-	DOUBLE data[128];
-	errorCode = m_instantAiCtrl->ReadAny(m_confParam.channelStart, m_confParam.channelCount, NULL, data);
-	CheckError(errorCode);
-	if (errorCode != Success)
+	switch (nIDEvent)
 	{
-		return;
+		case 0:
+		{
+			ErrorCode	errorCode = Success;
+			DOUBLE data[128];
+			errorCode = m_instantAiCtrl->ReadAny(m_confParam.channelStart, m_confParam.channelCount, NULL, data);
+			CheckError(errorCode);
+			if (errorCode != Success)
+			{
+				return;
+			}
+
+			CString str;
+			str.Format(_T("%.6g"), data[0]);
+			mEditChannel1.SetWindowTextW(str);
+			str.Format(_T("%.6g"), data[1]);
+			mEditChannel2.SetWindowTextW(str);
+		}
+			break;
+
+		case 1:
+		{
+			RefreshIO(); 
+		}
+			break;
+
+	default:
+		break;
 	}
 
-	CString str;
-	str.Format(_T("%.6g"), data[0]);
-	mEditChannel1.SetWindowTextW(str);
-	str.Format(_T("%.6g"), data[1]);
-	mEditChannel2.SetWindowTextW(str);
+	
 
 	CDialogEx::OnTimer(nIDEvent);
 }
@@ -982,5 +988,147 @@ void CDicingMachineDemoDlg::OnBnClickedButtonOpenGTS()
 {
 	// TODO: 在此添加控件通知处理程序代码
 
+	int nRet = mGoogol.Open();
 
+
+}
+
+
+void CDicingMachineDemoDlg::OnBnClickedButtonOpen1816()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	m_confParam.deviceNumber = (int)m_comboBox_Device.GetItemData(m_comboBox_Device.GetCurSel());
+	m_confParam.channelCount = m_comboBox_ChannelCount.GetCurSel() + 1;
+	m_confParam.channelStart = m_comboBox_ChannelStart.GetCurSel();
+	m_confParam.vrgType = (int)m_comboBox_ValueRange.GetItemData(m_comboBox_ValueRange.GetCurSel());
+	//TCHAR_TO_WCHAR(m_profilePath, param.profilePath);
+
+	ConfigurateDevice();
+
+
+}
+
+//初始化GTS I/O 列表控件
+int CDicingMachineDemoDlg::InitGTSIOList()
+{
+	//在读写器列表中动态生成读写器按钮
+
+	for (int i = 0;i <8;i++)
+	{
+		int nRow = mListGTSDI.InsertColumn(i, _T(""), LVCFMT_LEFT, 20);
+		 nRow = mListGTSDO.InsertColumn(i, _T(""), LVCFMT_LEFT, 20);
+	}
+
+	int nIndex = 0;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j=0;j<8;j++)
+		{
+			CString caption;
+			int nIndexCaption = nIndex + 1;
+			caption.Format(_T("%d"), nIndexCaption);
+			
+			mListGTSDI.createItemButton(i, j, *this, &mListGTSDI, caption, &m_ListIODataDI[nIndex]);
+
+			nIndex++;
+		}
+	}
+
+	nIndex = 0;
+	for (int j = 0; j < 8; j++)
+	{
+		CString caption;
+		int nIndexCaption = nIndex + 1;
+		caption.Format(_T("%d"), nIndexCaption);
+
+		mListGTSDO.createItemButton(0, j, *this, &mListGTSDO, caption, &m_ListIODataDO[nIndex]);
+
+		nIndex++;
+	}
+	
+
+	////颜色对话框用法示例
+	//CColorDialog dlg;
+	//dlg.DoModal();
+	//COLORREF color = dlg.GetColor();
+
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	button_map::iterator iter;
+	//	iter = mListGTSIO.m_mButton.find(i);
+	//	if (mListGTSIO.m_mButton.end() != iter)
+	//	{
+	//		//iter->second->EnableWindow(FALSE);
+	//		iter->second->SetFaceColor(color);
+	//	}
+	//}
+
+	//启动I/O刷新功能
+	SetTimer(1, 100, NULL);
+	
+	return 0;
+}
+
+
+LRESULT CDicingMachineDemoDlg::onBnCLick(WPARAM wParam, LPARAM lParam)
+{
+	//遍历
+	m_ListIODataDI;
+	
+	
+
+	return 0;
+}
+
+int CDicingMachineDemoDlg::RefreshIO()
+{
+	if (mGoogol.GetIsOpen())
+	{
+		
+	}
+
+	long lGpiValue = 0;
+
+	GT_GetDi(MC_GPI, &lGpiValue);
+
+	if (lGpiValue > 0)
+	{
+		int a = 0;
+		a++;
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		if ((int)(lGpiValue & (1 << i)))
+		{
+			m_ListIODataDI[i] = 1;
+		}
+		else
+		{
+			m_ListIODataDI[i] = 0;
+		}
+	}
+
+	for (int i = 0; i < m_const_nIOCount; i++)
+	{
+		button_map::iterator iter;
+		iter = mListGTSDI.m_mButton.find(i);
+		if (mListGTSDI.m_mButton.end() != iter)
+		{
+			iter->second->ChangeColor();
+		}
+	}
+
+	for (int i =0;i< 8;i++)
+	{
+		if (1 == m_ListIODataDO[i])
+		{
+			GT_SetDoBit(MC_GPO, i, 1);
+		}
+		else
+		{
+			GT_SetDoBit(MC_GPO, i, 0);
+		}
+	}
+	return 0;
 }

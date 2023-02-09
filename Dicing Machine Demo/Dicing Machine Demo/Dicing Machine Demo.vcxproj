@@ -120,7 +120,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)Inc;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gts.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -189,19 +189,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ButtonEx.h" />
     <ClInclude Include="Dicing Machine Demo.h" />
     <ClInclude Include="Dicing Machine DemoDlg.h" />
     <ClInclude Include="Fundation\SerialPort.h" />
     <ClInclude Include="Googol.h" />
+    <ClInclude Include="ListCtrlEx.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ButtonEx.cpp" />
     <ClCompile Include="Dicing Machine Demo.cpp" />
     <ClCompile Include="Dicing Machine DemoDlg.cpp" />
     <ClCompile Include="Fundation\SerialPort.cpp" />
     <ClCompile Include="Googol.cpp" />
+    <ClCompile Include="ListCtrlEx.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
