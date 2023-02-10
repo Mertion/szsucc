@@ -6,6 +6,7 @@
 #include "Dicing Machine Demo.h"
 #include "Dicing Machine DemoDlg.h"
 #include "afxdialogex.h"
+#include "JogDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -198,6 +199,8 @@ BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_OPENGTS, &CDicingMachineDemoDlg::OnBnClickedButtonOpenGTS)
 	ON_BN_CLICKED(IDC_BUTTON_OPEN1816, &CDicingMachineDemoDlg::OnBnClickedButtonOpen1816)
 	ON_MESSAGE(WM_BN_CLICK, &CDicingMachineDemoDlg::onBnCLick)
+	ON_BN_CLICKED(IDC_BUTTON_JOG, &CDicingMachineDemoDlg::OnBnClickedButtonJog)
+	ON_BN_CLICKED(IDC_BUTTON_POS, &CDicingMachineDemoDlg::OnBnClickedButtonPos)
 END_MESSAGE_MAP()
 
 
@@ -562,7 +565,8 @@ void CDicingMachineDemoDlg::OnDestroy()
 	CDialogEx::OnDestroy();
 
 	// TODO: 在此处添加消息处理程序代码
-	//mSerialPort.close();
+	KillTimer(0);
+	KillTimer(1);
 	StopRecThread();
 }
 
@@ -1130,5 +1134,21 @@ int CDicingMachineDemoDlg::RefreshIO()
 			GT_SetDoBit(MC_GPO, i, 0);
 		}
 	}
+
 	return 0;
+}
+
+void CDicingMachineDemoDlg::OnBnClickedButtonJog()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	JogDlg tJogDlg;
+	tJogDlg.SetGoogol(&mGoogol);
+	tJogDlg.DoModal();
+}
+
+
+void CDicingMachineDemoDlg::OnBnClickedButtonPos()
+{
+	// TODO: 在此添加控件通知处理程序代码
 }

@@ -51,6 +51,12 @@
     <ClInclude Include="ListCtrlEx.h">
       <Filter>List</Filter>
     </ClInclude>
+    <ClInclude Include="JogDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PosDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dicing Machine Demo.cpp">
@@ -73,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="ListCtrlEx.cpp">
       <Filter>List</Filter>
+    </ClCompile>
+    <ClCompile Include="JogDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PosDlg.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

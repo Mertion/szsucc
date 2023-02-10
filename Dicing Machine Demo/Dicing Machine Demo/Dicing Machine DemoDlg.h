@@ -149,4 +149,6 @@ public:
 
 
 	int RefreshIO();
+	afx_msg void OnBnClickedButtonJog();
+	afx_msg void OnBnClickedButtonPos();
 };

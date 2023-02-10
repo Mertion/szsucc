@@ -15,9 +15,12 @@ public:
 
 	int Open();
 
-	int GetState();
-	int run(int p_nAxis, double p_dAcc, double p_dDec, int p_nPos, double p_dVel);
-	int Stop();
+	int GetState(int nAxis, double p_dPrfPos, double p_dPrfVel, double p_dPos, double p_dVel);
+	int JogMove(int p_nAxis, double p_dAcc, double p_dDec, double p_dVel);
+	int PosMove(int p_nAxis, double p_dAcc, double p_dDec, long p_nPos, double p_dVel);
+	int StopAll();
+	int StopAxis(int p_nAxis);
+	int AutoHome(int p_nAxis);
 	bool GetIsOpen() const { return mIsOpen; }
 	void SetIsOpen(bool val) { mIsOpen = val; }
 private:
