@@ -21,6 +21,8 @@ public:
 	int StopAll();
 	int StopAxis(int p_nAxis);
 	int AutoHome(int p_nAxis);
+	int Zero(int p_nAxis);
+	int GetSts(short axis, long* pSts);
 	bool GetIsOpen() const { return mIsOpen; }
 	void SetIsOpen(bool val) { mIsOpen = val; }
 private:

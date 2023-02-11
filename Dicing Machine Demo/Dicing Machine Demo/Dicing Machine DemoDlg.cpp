@@ -7,6 +7,7 @@
 #include "Dicing Machine DemoDlg.h"
 #include "afxdialogex.h"
 #include "JogDlg.h"
+#include "PosDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1077,10 +1078,17 @@ int CDicingMachineDemoDlg::InitGTSIOList()
 
 LRESULT CDicingMachineDemoDlg::onBnCLick(WPARAM wParam, LPARAM lParam)
 {
-	//遍历
-	m_ListIODataDI;
-	
-	
+	for (int i = 0; i < 8; i++)
+	{
+		if (1 == m_ListIODataDO[i])
+		{
+			GT_SetDoBit(MC_GPO, i, 1);
+		}
+		else
+		{
+			GT_SetDoBit(MC_GPO, i, 0);
+		}
+	}
 
 	return 0;
 }
@@ -1123,17 +1131,7 @@ int CDicingMachineDemoDlg::RefreshIO()
 		}
 	}
 
-	for (int i =0;i< 8;i++)
-	{
-		if (1 == m_ListIODataDO[i])
-		{
-			GT_SetDoBit(MC_GPO, i, 1);
-		}
-		else
-		{
-			GT_SetDoBit(MC_GPO, i, 0);
-		}
-	}
+	
 
 	return 0;
 }
@@ -1151,4 +1149,8 @@ void CDicingMachineDemoDlg::OnBnClickedButtonJog()
 void CDicingMachineDemoDlg::OnBnClickedButtonPos()
 {
 	// TODO: 在此添加控件通知处理程序代码
+
+	PosDlg tPosDlg;
+	tPosDlg.SetGoogol(&mGoogol);
+	tPosDlg.DoModal();
 }

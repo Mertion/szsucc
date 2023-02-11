@@ -88,7 +88,8 @@ int Googol::PosMove(int p_nAxis,double p_dAcc,double p_dDec,long p_nPos,double p
 	GT_GetTrapPrm(p_nAxis, &trap);
 	trap.acc = p_dAcc;
 	trap.dec = p_dDec;
-	trap.smoothTime = 1;		
+	//trap.velStart = 0;
+	trap.smoothTime = 1;			//平滑时间，取值0-50，数值越大加减速越平稳
 	GT_SetTrapPrm(p_nAxis, &trap);	//设置点位运动参数
 	GT_SetPos(p_nAxis, p_nPos);		//设置轴目标位置
 	GT_SetVel(p_nAxis, p_dVel);		//设置轴目标位置
@@ -149,4 +150,14 @@ int Googol::AutoHome(int p_nAxis)
 	} while (tHomeSts.run); //等待搜索原点停止
 
 	return 0;
+}
+
+int Googol::Zero(int p_nAxis)
+{
+	return GT_ZeroPos(p_nAxis);
+}
+
+int Googol::GetSts(short axis, long* pSts)
+{
+	return GT_GetSts(axis,pSts);
 }

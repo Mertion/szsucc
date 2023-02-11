@@ -47,8 +47,9 @@
 #define IDC_EDIT_VEL                    1036
 #define IDC_EDIT_DEC                    1037
 #define IDC_EDIT_GETPOS                 1038
-#define IDC_EDIT_VEL2                   1039
 #define IDC_EDIT_POS                    1039
+#define IDC_BUTTON1                     1041
+#define IDC_BUTTON_ZERO                 1041
 #define IDC_EDIT_GETPRFVEL              1043
 #define IDC_EDIT_GETPRFPOS              1044
 #define IDC_EDIT_GETVEL                 1045
@@ -59,7 +60,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1041
+#define _APS_NEXT_CONTROL_VALUE         1042
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
