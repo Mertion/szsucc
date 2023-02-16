@@ -160,22 +160,27 @@ HCURSOR CKerfTestDlgDlg::OnQueryDragIcon()
 void CKerfTestDlgDlg::OnBnClickedButtonSetpara()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	StructDetectionParameters t_StructDetectionParameters;
+	SetDetectionParameters(t_StructDetectionParameters);
 }
 
 
 void CKerfTestDlgDlg::OnBnClickedButtonInstance()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	InstanceDll();
 }
 
 
 void CKerfTestDlgDlg::OnBnClickedButtonTest()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	Test();
 }
 
 
 void CKerfTestDlgDlg::OnBnClickedButtonDestroy()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	DestroyDLL();
 }

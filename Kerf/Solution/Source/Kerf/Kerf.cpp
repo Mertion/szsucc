@@ -114,9 +114,15 @@ void __stdcall SetDetectionParameters(StructDetectionParameters& p_StructDetecti
 }
 
 //ºÏ≤‚
-void __stdcall Detection(byte* p_pSrcData, int p_nWidth, int p_nHeigh)
+int __stdcall Detection(byte * p_pSrcData, int p_nWidth, int p_nHeigh)
 {
+	int nRet = (int)enumDetectionResult::DLLNotInitialized;
+	if (nullptr != g_Detection)
+	{
+		g_Detection->KerfDetection(p_pSrcData, p_nWidth, p_nHeigh);
+	}
 
+	return nRet;
 }
 
 //≤‚ ‘
@@ -140,6 +146,7 @@ void __stdcall Test()
 			int nSize = tmatSrcRead.rows * (int)tmatSrcRead.step;
 			g_TestImageSrc = new byte[nSize];
 
+			memcpy(g_TestImageSrc, tmatSrcRead.data, nSize);
 			Detection(g_TestImageSrc, tmatSrcRead.cols, tmatSrcRead.rows);
 		}
 		
