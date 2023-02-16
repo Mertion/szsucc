@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Detection">
+      <UniqueIdentifier>{16256683-afc2-4c8d-a9ee-27f6af682bdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -23,6 +26,12 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Detection\Detection.cpp">
+      <Filter>Detection</Filter>
+    </ClCompile>
+    <ClCompile Include="Detection\DetectionFunction.cpp">
+      <Filter>Detection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +46,18 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Head File\GeneralSolution.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Head File\InterFace.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Detection\Detection.h">
+      <Filter>Detection</Filter>
+    </ClInclude>
+    <ClInclude Include="Detection\DetectionFunction.h">
+      <Filter>Detection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

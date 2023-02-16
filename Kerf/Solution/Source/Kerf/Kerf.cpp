@@ -2,11 +2,20 @@
 //
 
 #include "stdafx.h"
+#include "afxmt.h"
 #include "Kerf.h"
+#include "InterFace.h"
+#include "Detection/Detection.h"
+#include "GeneralSolution.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+static CDetection* g_Detection = nullptr;
+static bool g_bIsinit = false;
+CCriticalSection g_critical_section;
+byte* g_TestImageSrc = nullptr;
 
 //
 //TODO:  如果此 DLL 相对于 MFC DLL 是动态链接的，
@@ -60,4 +69,84 @@ BOOL CKerfApp::InitInstance()
 	CWinApp::InitInstance();
 
 	return TRUE;
+}
+
+//释放测试接口图像空间
+void ReleaseTestSrc()
+{
+	if (nullptr != g_TestImageSrc)
+	{
+		delete[] g_TestImageSrc;
+		g_TestImageSrc = nullptr;
+	}
+}
+
+//初始化检测DLL
+void __stdcall InstanceDll()
+{
+	g_critical_section.Lock();
+	if ((nullptr == g_Detection) && !g_bIsinit)
+	{
+		g_bIsinit = true;
+		g_Detection = new CDetection();
+	}
+	g_critical_section.Unlock();
+
+	ReleaseTestSrc();
+}
+
+//卸载DLL
+void __stdcall DestroyDLL()
+{
+	if (nullptr != g_Detection)
+	{
+		delete g_Detection;
+
+		g_Detection = nullptr;
+	}
+
+	ReleaseTestSrc();
+}
+
+void __stdcall SetDetectionParameters(StructDetectionParameters& p_StructDetectionParameters)
+{
+
+}
+
+//检测
+void __stdcall Detection(byte* p_pSrcData, int p_nWidth, int p_nHeigh)
+{
+
+}
+
+//测试
+void __stdcall Test()
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	CString strFilter("数据文件(*.dat; *.bmp)|*.dat;*.bmp|任意文件(*.*)|*.*||");
+	CFileDialog fd(TRUE, NULL, NULL, 0, strFilter);
+	/*CFileDialog dlg(TRUE, _T("DLL"), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		dwFilter);*/
+
+	if (IDOK == fd.DoModal())
+	{
+		CString strPathDst = fd.GetPathName();
+		//打开文件
+		Mat tmatSrcRead = imread(string((CStringA)strPathDst), CV_LOAD_IMAGE_UNCHANGED);
+		
+		if ((tmatSrcRead.cols>0)&&(tmatSrcRead.rows>0))
+		{
+			int nSize = tmatSrcRead.rows * (int)tmatSrcRead.step;
+			g_TestImageSrc = new byte[nSize];
+
+			Detection(g_TestImageSrc, tmatSrcRead.cols, tmatSrcRead.rows);
+		}
+		
+	}
+	else
+	{
+		
+		return;
+	}
 }

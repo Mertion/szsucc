@@ -6,6 +6,7 @@
 #include "KerfTestDlg.h"
 #include "KerfTestDlgDlg.h"
 #include "afxdialogex.h"
+#include "InterFace.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -62,6 +63,10 @@ BEGIN_MESSAGE_MAP(CKerfTestDlgDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON_SETPARA, &CKerfTestDlgDlg::OnBnClickedButtonSetpara)
+	ON_BN_CLICKED(IDC_BUTTON_INSTANCE, &CKerfTestDlgDlg::OnBnClickedButtonInstance)
+	ON_BN_CLICKED(IDC_BUTTON_TEST, &CKerfTestDlgDlg::OnBnClickedButtonTest)
+	ON_BN_CLICKED(IDC_BUTTON_DESTROY, &CKerfTestDlgDlg::OnBnClickedButtonDestroy)
 END_MESSAGE_MAP()
 
 
@@ -150,3 +155,27 @@ HCURSOR CKerfTestDlgDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CKerfTestDlgDlg::OnBnClickedButtonSetpara()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CKerfTestDlgDlg::OnBnClickedButtonInstance()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CKerfTestDlgDlg::OnBnClickedButtonTest()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CKerfTestDlgDlg::OnBnClickedButtonDestroy()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
