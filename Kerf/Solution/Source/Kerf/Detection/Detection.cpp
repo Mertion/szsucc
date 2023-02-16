@@ -115,6 +115,13 @@ int CDetection::DetectionProcess()
 //计算边缘位置 
 int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 {
+	//上下边缘离散点统计集合
+	int* parrUp = new int[src.rows];
+	int* parrDown = new int[src.rows];
+	
+	memset(parrUp, 0, sizeof(int) * src.rows);
+	memset(parrDown, 0, sizeof(int) * src.rows);
+
 	int nHeightCenter = p_Rect.y + p_Rect.height / 2;
 	int nHeightCenterOffset = nHeightCenter * src.step;
 	//提取刀痕上下边缘
@@ -149,6 +156,8 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 				nAvgUp += y;
 				nUpMin = nUpMin < y ? nUpMin : y;
 				nUpMax = nUpMax > y ? nUpMax : y;
+
+				parrUp[y]++;
 				break;
 			}
 			nOffset -= src.step;
@@ -164,6 +173,8 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 				nAvgDown += y;
 				nDownMin = nDownMin < y ? nDownMin : y;
 				nDownMax = nDownMax > y ? nDownMax : y;
+
+				parrDown[y]++;
 				break;
 			}
 			nOffset += src.step;
@@ -184,9 +195,33 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 		nAvgDown = src.rows - 1;
 	}
 
-	nKerfUpperEdge = nUpMax;
-	nKerfLowerEdge = nDownMin;
+	//跟据离散点分布统计计算上下边缘
+	{
+		int nMax = 0;
+		//上边缘
+		for (int y = nHeightCenter; y > -1; y--)
+		{
+			if (parrUp[y] > nMax)
+			{
+				nMax = parrUp[y];
+				nKerfUpperEdge = y;
+			}
+		}
+
+		//下边缘
+		nMax = 0;
+		for (int y = nHeightCenter; y < src.rows; y++)
+		{
+			if (parrDown[y] > nMax)
+			{
+				nMax = parrDown[y];
+				nKerfLowerEdge = y;
+			}
+		}
+	}
 
 
+	delete[] parrUp;
+	delete[] parrDown;
 	return 0;
 }
