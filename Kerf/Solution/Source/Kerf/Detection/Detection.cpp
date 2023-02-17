@@ -100,8 +100,11 @@ int CDetection::DetectionProcess()
 			//按大小分离
 			if (itc->size()>matBinarizationDst.cols)
 			{
+				Mat dst;
 				Rect rect = boundingRect(*itc);
-				ExtractKnifeEdge(matBinarizationDst, rect);
+				DetectionFunction tDetectionFunction;
+				tDetectionFunction.ExtractContourImage(matBinarizationDst, contours[tnIndex], dst);
+				ExtractKnifeEdge(dst, rect);
 				break;
 			}
 
@@ -236,13 +239,54 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 		tDetectionFunction.FitLineLeastSquareMethodHorizontal(parrUpPoints, src.cols, parrUpPoints);
 		tDetectionFunction.FitLineLeastSquareMethodHorizontal(parrDownPoints, src.cols, parrDownPoints);
 
-		tDetectionFunction.ExtractCurveBottomPoints(parrUpPoints, src.cols, src.rows);
+		tDetectionFunction.ExtractCurveBottomPoints(parrUpPoints, src.cols, src.rows, nAvgUp, nKerfUpperEdge);
+		tDetectionFunction.ExtractCurveTopPoints(parrDownPoints, src.cols, src.rows, nAvgDown, nKerfLowerEdge);
 	}
 	
-	
+	//提取刀痕缺陷
+	ExtractKerfDefects(src, nKerfUpperEdge, nKerfLowerEdge);
+
 	delete[] parrUpPoints;
 	delete[] parrDownPoints;
 	delete[] parrUp;
 	delete[] parrDown;
+	return 0;
+}
+
+//提取刀痕缺陷
+int CDetection::ExtractKerfDefects(Mat& src,int p_nTop,int p_nBottom)
+{
+	Mat tMark = src.clone();
+	Rect tRect;
+	tRect.x = 0;
+	tRect.y = p_nTop;
+	tRect.width = src.cols;
+	tRect.height = p_nBottom - p_nTop;
+
+	//提取刀痕上下两端之外的缺陷
+	{
+		cv::rectangle(tMark, tRect, cv::Scalar(0), CV_FILLED, 8, 0);
+	}
+
+	//提取刀痕上下两端之内的缺陷
+	{
+		Mat matBinarization;
+		threshold(src, matBinarization, 100, 255, CV_THRESH_BINARY_INV);
+
+		tRect.y = 0;
+		tRect.height = p_nTop;
+		cv::rectangle(matBinarization, tRect, cv::Scalar(0), CV_FILLED, 8, 0);
+
+		tRect.y = p_nBottom;
+		tRect.height = src.rows - p_nBottom;
+		cv::rectangle(matBinarization, tRect, cv::Scalar(0), CV_FILLED, 8, 0);
+
+		//将结果图像与Mark图像各并
+
+	}
+
+	//查找图像中缺陷最大值：宽度、面积等
+
+
 	return 0;
 }
