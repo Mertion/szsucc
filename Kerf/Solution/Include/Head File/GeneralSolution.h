@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "InterFace.h"
+#include <vector>
 
 #include "opencv2\highgui\highgui.hpp"
 #include "opencv.hpp"

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Detection.h"
+#include "DetectionFunction.h"
 
 CDetection::CDetection()
 {
@@ -115,15 +116,20 @@ int CDetection::DetectionProcess()
 //计算边缘位置 
 int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 {
+	//上下边缘离散点集合
+	int* parrUpPoints = new int[src.cols];
+	int* parrDownPoints = new int[src.cols];
 	//上下边缘离散点统计集合
 	int* parrUp = new int[src.rows];
 	int* parrDown = new int[src.rows];
-	
+
+	memset(parrUpPoints, 0, sizeof(int) * src.cols);
+	memset(parrDownPoints, 0, sizeof(int) * src.cols);
 	memset(parrUp, 0, sizeof(int) * src.rows);
 	memset(parrDown, 0, sizeof(int) * src.rows);
 
 	int nHeightCenter = p_Rect.y + p_Rect.height / 2;
-	int nHeightCenterOffset = nHeightCenter * src.step;
+	int nHeightCenterOffset = nHeightCenter * (int)src.step;
 	//提取刀痕上下边缘
 	int nStep = 1;
 
@@ -158,9 +164,11 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 				nUpMax = nUpMax > y ? nUpMax : y;
 
 				parrUp[y]++;
+
+				parrUpPoints[x] = y;
 				break;
 			}
-			nOffset -= src.step;
+			nOffset -= (int)src.step;
 		}
 
 		//找下边缘
@@ -175,9 +183,11 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 				nDownMax = nDownMax > y ? nDownMax : y;
 
 				parrDown[y]++;
+
+				parrDownPoints[x] = y;
 				break;
 			}
-			nOffset += src.step;
+			nOffset += (int)src.step;
 		}
 
 
@@ -220,7 +230,18 @@ int CDetection::ExtractKnifeEdge(Mat& src, Rect p_Rect)
 		}
 	}
 
+	//拟合刀痕上下边缘
+	{
+		DetectionFunction tDetectionFunction;
+		tDetectionFunction.FitLineLeastSquareMethodHorizontal(parrUpPoints, src.cols, parrUpPoints);
+		tDetectionFunction.FitLineLeastSquareMethodHorizontal(parrDownPoints, src.cols, parrDownPoints);
 
+		tDetectionFunction.ExtractCurveBottomPoints(parrUpPoints, src.cols, src.rows);
+	}
+	
+	
+	delete[] parrUpPoints;
+	delete[] parrDownPoints;
 	delete[] parrUp;
 	delete[] parrDown;
 	return 0;
