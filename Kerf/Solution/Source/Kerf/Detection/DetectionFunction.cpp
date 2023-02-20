@@ -52,8 +52,8 @@ float myLinearity(CvSeq* seq)
 
 	//计算直线度
 	linearity = sqrt(4 * pow(u11, 2.0f) + pow(u20 - u02, 2.0f)) / (u20 + u02);
-	delete x;
-	delete y;
+	delete[] x;
+	delete[] y;
 	return linearity;
 }
 
@@ -83,8 +83,8 @@ int DetectionFunction::FitLineLeastSquareMethodHorizontal(int* p_parrLineSrc, in
 	//fprintf(stdout, "v=(%f,%f),vy/vx=%f,(x,y)=(%f,%f),Linearity=%f/n", line[0], line[1], line[1] / line[0], line[2], line[3], linearity);
 
 	//vx vy x y
-	Point A(0, line[3] - (line[2] * line[1] / line[0]));
-	Point B(nLen, (nLen - line[2]) * line[1] / line[0] + line[3]);
+	Point A(0, (int)(line[3] - (line[2] * line[1] / line[0])));
+	Point B(nLen, (int)((nLen - line[2]) * line[1] / line[0] + line[3]));
 
 	cvClearSeq(point_seq);
 	cvReleaseMemStorage(&storage);
@@ -256,5 +256,37 @@ int DetectionFunction::ExtractContourImage(Mat& src, std::vector<cv::Point>& p_i
 	cv::drawContours(matMark, contours, 0, cv::Scalar(255), CV_FILLED, 8);
 
 	src.copyTo(Dst, matMark);
+	return 0;
+}
+
+int DetectionFunction::ExtractContourCount(Mat& src, std::vector<cv::Point>& p_itc, Rect& p_Rect, int& p_pnCount)
+{
+	Mat matMark = Mat::zeros(src.size(), CV_8UC1);
+	std::vector<std::vector<cv::Point> >contours;
+	contours.push_back(p_itc);
+
+	cv::drawContours(matMark, contours, 0, cv::Scalar(255), CV_FILLED, 8);
+
+	int nCount = 0;
+	int nEndX = p_Rect.br().x;
+	int nEndY = p_Rect.br().y;
+	int nOffset = 0;
+
+	for (int y = p_Rect.y; y < nEndY; ++y)
+	{
+		nOffset = y * (int)src.step + p_Rect.x;
+		for (int x = p_Rect.x; x < nEndX; ++x)
+		{
+			uchar t_nVal1 = (*(uchar*)(src.data + nOffset));
+			if (t_nVal1 > 0)
+			{
+				++nCount;
+			}
+			nOffset++;
+		}
+	}
+
+	p_pnCount = nCount;
+
 	return 0;
 }

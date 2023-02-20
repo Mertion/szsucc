@@ -258,13 +258,17 @@ int CDetection::ExtractKerfDefects(Mat& src,int p_nTop,int p_nBottom)
 {
 	Mat tMark = src.clone();
 	Rect tRect;
-	tRect.x = 0;
-	tRect.y = p_nTop;
-	tRect.width = src.cols;
-	tRect.height = p_nBottom - p_nTop;
+	int nMaxHeigth = 0, nMaxWidth = 0, nMaxArea = 0;
+	int nMaxHeigthID = 0, nMaxWidthID = 0, nMaxAreaID = 0;
+	
 
 	//提取刀痕上下两端之外的缺陷
 	{
+		tRect.x = 0;
+		tRect.y = p_nTop;
+		tRect.width = src.cols;
+		tRect.height = p_nBottom - p_nTop;
+
 		cv::rectangle(tMark, tRect, cv::Scalar(0), CV_FILLED, 8, 0);
 	}
 
@@ -282,10 +286,58 @@ int CDetection::ExtractKerfDefects(Mat& src,int p_nTop,int p_nBottom)
 		cv::rectangle(matBinarization, tRect, cv::Scalar(0), CV_FILLED, 8, 0);
 
 		//将结果图像与Mark图像各并
-
+		bitwise_or(tMark, matBinarization, tMark);
 	}
 
 	//查找图像中缺陷最大值：宽度、面积等
+	{
+		Mat matTmp = tMark.clone();
+		std::vector<std::vector<cv::Point> >contours;
+		//Mat Src(t_matThreshold, true);
+		findContours(matTmp, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+
+		////轮廓过滤,去掉小于最小尺寸的轮廓
+		std::vector<std::vector<cv::Point> >::iterator itc = contours.begin();
+		int tnIndex = 0;
+		while (itc != contours.end())
+		{
+			Rect rect = boundingRect(*itc);
+
+			if(rect.width > nMaxWidth)
+			{
+				nMaxWidth = rect.width;
+				nMaxWidthID = tnIndex;
+			}
+
+			if (rect.height > nMaxHeigth)
+			{
+				nMaxHeigth = rect.height;
+				nMaxHeigthID = tnIndex;
+			}
+
+			int nArea = 0;
+			DetectionFunction tDetectionFunction;
+			tDetectionFunction.ExtractContourCount(src, contours[tnIndex], rect, nArea);
+			if (nArea> nMaxArea)
+			{
+				nMaxArea = nArea;
+				nMaxAreaID = tnIndex;
+			}
+
+			itc++;
+			tnIndex++;
+		}
+
+#ifdef DEBUG
+		Mat matMark = Mat::zeros(src.size(), CV_8UC1);
+
+		cv::drawContours(matMark, contours, nMaxWidthID, cv::Scalar(40), CV_FILLED, 8);
+		cv::drawContours(matMark, contours, nMaxHeigthID, cv::Scalar(80), CV_FILLED, 8);
+		cv::drawContours(matMark, contours, nMaxAreaID, cv::Scalar(150), CV_FILLED, 8);
+#endif // DEBUG
+
+		
+	}
 
 
 	return 0;

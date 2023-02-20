@@ -19,5 +19,7 @@ public:
 
 	//提取轮廓图像
 	int ExtractContourImage(Mat& src, std::vector<cv::Point>& p_itc, Mat& Dst);
+	//提取轮廓内像素点个数
+	int ExtractContourCount(Mat& src, std::vector<cv::Point>& p_itc, Rect& p_Rect, int& p_pnCount);
 };
 

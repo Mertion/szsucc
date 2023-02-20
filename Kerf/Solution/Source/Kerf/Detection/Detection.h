@@ -12,6 +12,8 @@ public:
 	int DetectionProcess();
 	int ExtractKnifeEdge(Mat& p_matBinarizationDst, Rect p_Rect);
 	int ExtractKerfDefects(Mat& src, int p_nTop, int p_nBottom);
+
+
 private:
 	//原始图像，此处需考虑是否开固定空间。
 	Mat src;
