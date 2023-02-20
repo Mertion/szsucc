@@ -176,6 +176,7 @@ void CDicingMachineDemoDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_CHANNEL2, mEditChannel2);
 	DDX_Control(pDX, IDC_LIST_GTSDI, mListGTSDI);
 	DDX_Control(pDX, IDC_LIST_GTSDO, mListGTSDO);
+	DDX_Control(pDX, IDC_EDIT2, mEDIT2);
 }
 
 BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
@@ -202,6 +203,7 @@ BEGIN_MESSAGE_MAP(CDicingMachineDemoDlg, CDialogEx)
 	ON_MESSAGE(WM_BN_CLICK, &CDicingMachineDemoDlg::onBnCLick)
 	ON_BN_CLICKED(IDC_BUTTON_JOG, &CDicingMachineDemoDlg::OnBnClickedButtonJog)
 	ON_BN_CLICKED(IDC_BUTTON_POS, &CDicingMachineDemoDlg::OnBnClickedButtonPos)
+	ON_BN_CLICKED(IDC_BUTTON_CLICKTEST, &CDicingMachineDemoDlg::OnBnClickedButtonClicktest)
 END_MESSAGE_MAP()
 
 
@@ -1153,4 +1155,16 @@ void CDicingMachineDemoDlg::OnBnClickedButtonPos()
 	PosDlg tPosDlg;
 	tPosDlg.SetGoogol(&mGoogol);
 	tPosDlg.DoModal();
+}
+
+
+void CDicingMachineDemoDlg::OnBnClickedButtonClicktest()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	m_nTestCounter++;
+	CString str;
+	str.Format(_T("%d"), m_nTestCounter);
+	//(this->GetDlgItem(IDC_EDIT2))	IDC_EDIT2
+	mEDIT2.SetWindowTextW(str);
 }

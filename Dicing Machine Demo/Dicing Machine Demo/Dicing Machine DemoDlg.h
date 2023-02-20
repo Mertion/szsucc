@@ -122,6 +122,7 @@ private:
 	int m_ListIODataDI[m_const_nIOCount] = { 0 };
 	int m_ListIODataDO[m_const_nIOCount] = { 0 };
 
+	int m_nTestCounter = 0;
 public:
 	
 	
@@ -151,4 +152,6 @@ public:
 	int RefreshIO();
 	afx_msg void OnBnClickedButtonJog();
 	afx_msg void OnBnClickedButtonPos();
+	afx_msg void OnBnClickedButtonClicktest();
+	CEdit mEDIT2;
 };
