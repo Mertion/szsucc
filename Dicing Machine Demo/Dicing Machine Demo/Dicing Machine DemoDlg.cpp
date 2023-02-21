@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "JogDlg.h"
 #include "PosDlg.h"
+#include "PressTriggerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1162,9 +1163,12 @@ void CDicingMachineDemoDlg::OnBnClickedButtonClicktest()
 {
 	// TODO: 在此添加控件通知处理程序代码
 
-	m_nTestCounter++;
-	CString str;
-	str.Format(_T("%d"), m_nTestCounter);
-	//(this->GetDlgItem(IDC_EDIT2))	IDC_EDIT2
-	mEDIT2.SetWindowTextW(str);
+	//m_nTestCounter++;
+	//CString str;
+	//str.Format(_T("%d"), m_nTestCounter);
+	////(this->GetDlgItem(IDC_EDIT2))	IDC_EDIT2
+	//mEDIT2.SetWindowTextW(str);
+
+	PressTriggerDlg tPressTriggerDlg;
+	tPressTriggerDlg.DoModal();
 }

@@ -197,6 +197,7 @@
     <ClInclude Include="JogDlg.h" />
     <ClInclude Include="ListCtrlEx.h" />
     <ClInclude Include="PosDlg.h" />
+    <ClInclude Include="PressTriggerDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="JogDlg.cpp" />
     <ClCompile Include="ListCtrlEx.cpp" />
     <ClCompile Include="PosDlg.cpp" />
+    <ClCompile Include="PressTriggerDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

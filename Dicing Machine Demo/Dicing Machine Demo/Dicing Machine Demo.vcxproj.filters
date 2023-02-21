@@ -57,6 +57,9 @@
     <ClInclude Include="PosDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PressTriggerDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dicing Machine Demo.cpp">
@@ -84,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PosDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PressTriggerDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
