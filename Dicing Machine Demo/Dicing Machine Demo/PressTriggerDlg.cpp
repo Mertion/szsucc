@@ -57,7 +57,7 @@ void PressTriggerDlg::OnLButtonDown(UINT nFlags, CPoint point)
 BOOL PressTriggerDlg::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: 在此添加专用代码和/或调用基类
-	if (pMsg->message == WM_LBUTTONDOWN )
+	if ((pMsg->message == WM_LBUTTONDOWN )||(pMsg->message == WM_RBUTTONDOWN))
 	{
 		CPoint pnt;
 		GetCursorPos(&pnt);//光标位置
@@ -68,7 +68,7 @@ BOOL PressTriggerDlg::PreTranslateMessage(MSG* pMsg)
 			SetTimer(7, 100, NULL);
 		}
 	}
-	if (pMsg->message == WM_LBUTTONUP)
+	if ((pMsg->message == WM_LBUTTONUP)||(pMsg->message == WM_RBUTTONUP))
 	{
 		CPoint pnt;
 		GetCursorPos(&pnt);//光标位置
